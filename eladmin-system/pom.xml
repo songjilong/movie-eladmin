@@ -19,6 +19,20 @@
     </properties>
 
     <dependencies>
+
+        <!-- 业务代码~电影管理 -->
+        <dependency>
+            <groupId>me.songjilong</groupId>
+            <artifactId>movie-manage</artifactId>
+            <version>2.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>me.zhengjie</groupId>
+                    <artifactId>eladmin-tools</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <!-- 代码生成模块 -->
         <dependency>
             <groupId>me.zhengjie</groupId>
