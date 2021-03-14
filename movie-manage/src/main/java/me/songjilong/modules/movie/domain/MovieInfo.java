@@ -52,8 +52,12 @@ public class MovieInfo extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "英文名称")
     private String nameEn;
 
+    @Column(name = "img_name")
+    @ApiModelProperty(value = "海报名（图片名称）")
+    private String imgName;
+
     @Column(name = "img")
-    @ApiModelProperty(value = "海报")
+    @ApiModelProperty(value = "海报（图片路径）")
     private String img;
 
     @Column(name = "type")

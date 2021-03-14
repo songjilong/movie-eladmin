@@ -19,6 +19,8 @@ import me.songjilong.modules.movie.domain.MovieInfo;
 import me.songjilong.modules.movie.service.dto.MovieInfoDto;
 import me.songjilong.modules.movie.service.dto.MovieInfoQueryCriteria;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Map;
 import java.util.List;
 import java.io.IOException;
@@ -80,4 +82,12 @@ public interface MovieInfoService {
     * @throws IOException /
     */
     void download(List<MovieInfoDto> all, HttpServletResponse response) throws IOException;
+
+    /**
+     * 修改海报
+     * @param poster 海报文件
+     * @param movieInfoId 电影id
+     * @return /
+     */
+    Map<String, String> updatePoster(MultipartFile poster, Long movieInfoId);
 }

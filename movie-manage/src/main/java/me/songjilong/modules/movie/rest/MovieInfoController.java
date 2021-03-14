@@ -27,6 +27,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
@@ -83,5 +85,11 @@ public class MovieInfoController {
     public ResponseEntity<Object> delete(@RequestBody Long[] ids) {
         movieInfoService.deleteAll(ids);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @ApiOperation("修改海报（图片）")
+    @PostMapping(value = "/updatePoster/{movieInfoId}")
+    public ResponseEntity<Object> updatePoster(@RequestParam MultipartFile poster, @PathVariable Long movieInfoId){
+        return new ResponseEntity<>(movieInfoService.updatePoster(poster, movieInfoId), HttpStatus.OK);
     }
 }

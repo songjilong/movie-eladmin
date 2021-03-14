@@ -22,21 +22,19 @@ import me.songjilong.modules.movie.service.MovieInfoService;
 import me.songjilong.modules.movie.service.dto.MovieInfoDto;
 import me.songjilong.modules.movie.service.dto.MovieInfoQueryCriteria;
 import me.songjilong.modules.movie.service.mapstruct.MovieInfoMapper;
-import me.zhengjie.utils.FileUtil;
-import me.zhengjie.utils.PageUtil;
-import me.zhengjie.utils.QueryHelp;
-import me.zhengjie.utils.ValidationUtil;
+import me.zhengjie.config.FileProperties;
+import me.zhengjie.utils.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotBlank;
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
 * @website https://el-admin.vip
@@ -50,6 +48,7 @@ public class MovieInfoServiceImpl implements MovieInfoService {
 
     private final MovieInfoRepository movieInfoRepository;
     private final MovieInfoMapper movieInfoMapper;
+    private final FileProperties properties;
 
     @Override
     public Map<String,Object> queryAll(MovieInfoQueryCriteria criteria, Pageable pageable){
@@ -99,7 +98,8 @@ public class MovieInfoServiceImpl implements MovieInfoService {
             Map<String,Object> map = new LinkedHashMap<>();
             map.put("名称", movieInfo.getName());
             map.put("英文名称", movieInfo.getNameEn());
-            map.put("海报", movieInfo.getImg());
+            map.put("海报（图片名称）", movieInfo.getImgName());
+            map.put("海报（图片路径）", movieInfo.getImg());
             map.put("类型（英文逗号分隔）", movieInfo.getType());
             map.put("语言", movieInfo.getLanguage());
             map.put("时长", movieInfo.getDuration());
@@ -118,5 +118,22 @@ public class MovieInfoServiceImpl implements MovieInfoService {
             list.add(map);
         }
         FileUtil.downloadExcel(list, response);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Map<String, String> updatePoster(MultipartFile poster, Long movieInfoId) {
+        MovieInfo movieInfo = movieInfoRepository.findById(movieInfoId).orElseThrow();
+        String oldPath = movieInfo.getImg();
+        File file = FileUtil.upload(poster, properties.getPath().getPath());
+        movieInfo.setImg(Objects.requireNonNull(file).getPath());
+        movieInfo.setImgName(file.getName());
+        movieInfoRepository.save(movieInfo);
+        if (StringUtils.isNotBlank(oldPath)) {
+            FileUtil.del(oldPath);
+        }
+        return new HashMap<String, String>(1) {{
+            put("poster", file.getName());
+        }};
     }
 }

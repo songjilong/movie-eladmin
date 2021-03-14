@@ -39,7 +39,10 @@ public class MovieInfoDto extends BaseDTO implements Serializable {
     /** 英文名称 */
     private String nameEn;
 
-    /** 海报 */
+    /** 海报（图片名称） */
+    private String imgName;
+
+    /** 海报（图片路径） */
     private String img;
 
     /** 类型（英文逗号分隔） */
