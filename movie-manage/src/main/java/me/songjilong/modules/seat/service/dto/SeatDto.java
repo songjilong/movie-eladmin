@@ -16,9 +16,9 @@
 package me.songjilong.modules.seat.service.dto;
 
 import lombok.Data;
+import me.songjilong.modules.hall.domain.Hall;
 import me.zhengjie.base.BaseDTO;
 
-import java.sql.Timestamp;
 import java.io.Serializable;
 
 /**
@@ -39,7 +39,7 @@ public class SeatDto extends BaseDTO implements Serializable {
     /** 是否损坏 */
     private Boolean isDamage;
 
-    /** 放映厅id */
-    private Long hallId;
+    /** 放映厅 */
+    private Hall hall;
 
 }

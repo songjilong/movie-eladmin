@@ -29,12 +29,13 @@ import me.zhengjie.annotation.Query;
 public class ScheduleQueryCriteria{
 
     /** 模糊 */
-    @Query(type = Query.Type.INNER_LIKE)
-    private Long hallId;
+    @Query(type = Query.Type.INNER_LIKE, joinName = "hall", propName = "name")
+    private String hallName;
 
     /** 模糊 */
-    @Query(type = Query.Type.INNER_LIKE)
-    private Long movieInfoId;
+    @Query(type = Query.Type.INNER_LIKE, joinName = "movieInfo", propName = "name")
+    private String movieName;
+
     /** BETWEEN */
     @Query(type = Query.Type.BETWEEN)
     private List<Timestamp> beginTime;

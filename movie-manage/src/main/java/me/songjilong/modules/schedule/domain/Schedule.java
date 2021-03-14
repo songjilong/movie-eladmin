@@ -19,6 +19,8 @@ import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
+import me.songjilong.modules.hall.domain.Hall;
+import me.songjilong.modules.movie.domain.MovieInfo;
 import me.zhengjie.base.BaseEntity;
 
 import javax.persistence.*;
@@ -58,15 +60,15 @@ public class Schedule extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "剩余座位数")
     private Integer remain;
 
-    @Column(name = "hall_id",nullable = false)
-    @NotNull
-    @ApiModelProperty(value = "放映厅id")
-    private Long hallId;
+    @OneToOne
+    @JoinColumn(name = "hall_id")
+    @ApiModelProperty(value = "放映厅")
+    private Hall hall;
 
-    @Column(name = "movie_info_id",nullable = false)
-    @NotNull
-    @ApiModelProperty(value = "电影id")
-    private Long movieInfoId;
+    @OneToOne
+    @JoinColumn(name = "movie_info_id")
+    @ApiModelProperty(value = "影片")
+    private MovieInfo movieInfo;
 
     public void copy(Schedule source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));

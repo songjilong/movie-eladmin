@@ -16,8 +16,8 @@
 package me.songjilong.modules.schedule.service.dto;
 
 import lombok.Data;
+import me.songjilong.modules.hall.domain.Hall;
 import me.zhengjie.base.BaseDTO;
-import me.zhengjie.base.BaseEntity;
 
 import java.sql.Timestamp;
 import java.math.BigDecimal;
@@ -45,8 +45,8 @@ public class ScheduleDto extends BaseDTO implements Serializable {
     private Integer remain;
 
     /** 放映厅id */
-    private Long hallId;
+    private Hall hall;
 
     /** 电影id */
-    private Long movieInfoId;
+    private MovieInfoSmallDto movieInfo;
 }

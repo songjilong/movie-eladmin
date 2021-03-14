@@ -99,8 +99,8 @@ public class ScheduleServiceImpl implements ScheduleService {
             map.put("开始放映时间", schedule.getBeginTime());
             map.put("本场价格", schedule.getPrice());
             map.put("剩余座位数", schedule.getRemain());
-            map.put("放映厅id", schedule.getHallId());
-            map.put("电影id", schedule.getMovieInfoId());
+            map.put("放映厅", schedule.getHall().getName());
+            map.put("电影", schedule.getMovieInfo().getName());
             map.put("创建者", schedule.getCreateBy());
             map.put("更新者", schedule.getUpdateBy());
             map.put("创建日期", schedule.getCreateTime());

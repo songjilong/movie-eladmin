@@ -98,7 +98,7 @@ public class SeatServiceImpl implements SeatService {
             Map<String,Object> map = new LinkedHashMap<>();
             map.put("座位号", seat.getNumber());
             map.put("是否损坏", seat.getIsDamage());
-            map.put("放映厅id", seat.getHallId());
+            map.put("放映厅", seat.getHall().getName());
             map.put("创建者", seat.getCreateBy());
             map.put("更新者", seat.getUpdateBy());
             map.put("创建日期", seat.getCreateTime());

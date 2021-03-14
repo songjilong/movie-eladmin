@@ -15,15 +15,16 @@
 */
 package me.songjilong.modules.hall.domain;
 
-import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
-import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import me.songjilong.modules.cinema.domain.Cinema;
 import me.zhengjie.base.BaseEntity;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.sql.Timestamp;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -53,10 +54,10 @@ public class Hall extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "放映厅容量")
     private Integer capacity;
 
-    @Column(name = "cinema_id",nullable = false)
-    @NotNull
-    @ApiModelProperty(value = "影院id")
-    private Long cinemaId;
+    @OneToOne
+    @JoinColumn(name = "cinema_id")
+    @ApiModelProperty(value = "电影院")
+    private Cinema cinema;
 
     public void copy(Hall source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));

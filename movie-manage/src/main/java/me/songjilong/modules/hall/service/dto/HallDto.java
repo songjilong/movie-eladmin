@@ -16,6 +16,7 @@
 package me.songjilong.modules.hall.service.dto;
 
 import lombok.Data;
+import me.songjilong.modules.cinema.domain.Cinema;
 import me.zhengjie.base.BaseDTO;
 
 import java.sql.Timestamp;
@@ -39,9 +40,6 @@ public class HallDto extends BaseDTO implements Serializable {
     /** 放映厅容量 */
     private Integer capacity;
 
-    /** 影院id*/
-    private Long cinemaId;
-
-    /** 影院名称 */
-    private String cinemaName;
+    /** 电影院 */
+    private Cinema cinema;
 }

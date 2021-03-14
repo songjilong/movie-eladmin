@@ -36,6 +36,6 @@ public class HallQueryCriteria{
     private Integer capacity;
 
     /** 模糊 */
-    @Query(type = Query.Type.INNER_LIKE)
-    private Long cinemaId;
+    @Query(type = Query.Type.INNER_LIKE, propName = "name", joinName = "cinema")
+    private String cinemaName;
 }

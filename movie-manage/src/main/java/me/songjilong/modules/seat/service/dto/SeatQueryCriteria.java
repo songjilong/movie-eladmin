@@ -36,6 +36,6 @@ public class SeatQueryCriteria{
     private Boolean isDamage;
 
     /** 模糊 */
-    @Query(type = Query.Type.INNER_LIKE)
-    private Long hallId;
+    @Query(type = Query.Type.INNER_LIKE, joinName = "hall", propName = "name")
+    private String hallName;
 }
