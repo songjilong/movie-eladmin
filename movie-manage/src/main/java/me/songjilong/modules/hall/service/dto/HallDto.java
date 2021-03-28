@@ -40,6 +40,9 @@ public class HallDto extends BaseDTO implements Serializable {
     /** 放映厅容量 */
     private Integer capacity;
 
+    /** 放映厅类型 */
+    private String type;
+
     /** 电影院 */
     private Cinema cinema;
 }

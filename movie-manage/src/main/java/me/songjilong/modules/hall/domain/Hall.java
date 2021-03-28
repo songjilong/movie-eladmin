@@ -54,6 +54,11 @@ public class Hall extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "放映厅容量")
     private Integer capacity;
 
+    @Column(name = "type")
+    @NotNull
+    @ApiModelProperty(value = "放映厅类型")
+    private String type;
+
     @OneToOne
     @JoinColumn(name = "cinema_id")
     @ApiModelProperty(value = "电影院")

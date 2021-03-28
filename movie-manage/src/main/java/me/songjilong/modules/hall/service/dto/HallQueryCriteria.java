@@ -38,4 +38,8 @@ public class HallQueryCriteria{
     /** 模糊 */
     @Query(type = Query.Type.INNER_LIKE, propName = "name", joinName = "cinema")
     private String cinemaName;
+
+    /** 精确 */
+    @Query
+    private String type;
 }

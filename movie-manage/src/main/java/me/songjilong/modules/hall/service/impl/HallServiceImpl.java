@@ -98,6 +98,7 @@ public class HallServiceImpl implements HallService {
             Map<String,Object> map = new LinkedHashMap<>();
             map.put("放映厅名称", hall.getName());
             map.put("放映厅容量", hall.getCapacity());
+            map.put("放映厅类型", hall.getType());
             map.put("影院名称", hall.getCinema().getName());
             map.put("创建者", hall.getCreateBy());
             map.put("更新者", hall.getUpdateBy());
